@@ -50,11 +50,13 @@ var Ozu =
 		backSound = game.add.audio("back");
 		selectSound  = game.add.audio("test");
 		
+		game.input.touch.preventDefault = true;
+		
 		music.play();
 		
-		startButton = game.add.button(205, 175, 'start', this.pressed, 2, 1, 0);
-		instructButton = game.add.button(485, 175, 'instructions',this.pressed, 2, 1, 0);
-		creditButton = game.add.button(205, 375, 'credits',this.pressed, 2, 1, 0);
+		startButton = game.add.button(205, 175, 'start', this.startTouched, 2, 1, 0);
+		instructButton = game.add.button(485, 175, 'instructions',this.instructTouched, 2, 1, 0);
+		creditButton = game.add.button(205, 375, 'credits',this.creditTouched, 2, 1, 0);
 		quitButton = game.add.button(485, 375, 'quit', this.quitClick, 2, 1, 0);
 		
 		
@@ -75,14 +77,7 @@ var Ozu =
 		quitButton.onInputOut.add(this.out);
 		quitButton.onInputUp.add(this.up);
 		
-		//touch control functions
-		
-		startButton.events.onInputOver.add(this.startTouched);
-		instructButton.events.onInputOver.add(this.instructTouched);
-		creditButton.events.onInputOver.add(this.creditTouched);
-		quitButton.events.onInputOver.add(this.quitTouched);
-
-		
+		game.input.touch.preventDefault = true;
 		
 	},
 	
@@ -115,11 +110,6 @@ var Ozu =
 
 	},
 	
-	pressed : function() {
-		
-		selectSound.play(); //temporary function in place for switching between game screens
-		
-	},
 	
 	startTouched : function (startButton, pointer) {
 		
@@ -145,6 +135,7 @@ var Ozu =
 	backSound.play(); //temporary function in place for exiting application
 	
 	}
+	
 
 }
 
